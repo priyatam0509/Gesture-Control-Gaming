@@ -1,13 +1,3 @@
-#This code is borrowed form Wassim Gharbi https://github.com/wassgha/pygta-mac/blob/master/directkeys.py
-
-# direct inputs
-# source to this solution and code:
-# http://stackoverflow.com/questions/14489013/simulate-python-keypresses-for-controlling-a-game
-# http://www.gamespp.com/directx/directInputKeyboardScanCodes.html
-
-
-#!/usr/bin/env python
-
 import time
 from Quartz.CoreGraphics import CGEventCreateKeyboardEvent
 from Quartz.CoreGraphics import CGEventPost
@@ -17,8 +7,6 @@ from Quartz.CoreGraphics import CGEventPost
 
 from Quartz.CoreGraphics import kCGHIDEventTap
 
-# From http://stackoverflow.com/questions/281133/controlling-the-mouse-from-python-in-os-x
-# and from https://developer.apple.com/library/mac/documentation/Carbon/Reference/QuartzEventServicesRef/index.html#//apple_ref/c/func/CGEventCreateKeyboardEvent
 
 W = 0x0D
 A = 0x00
