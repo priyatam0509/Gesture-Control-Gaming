@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-#This code was borrowed from stackoverflow
-
 import cv2
 import numpy as np
 
