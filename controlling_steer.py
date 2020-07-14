@@ -1,17 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat July 11 2020
-
-@author: Chanchal Choudhary
-@discription: Game control by a steering wheel using openCV
-
-This code is inspired by a project by Patel Digant https://github.com/pateldigant/gesture-gaming-python 
-
-"""
-
-# directkeys.py is taken from https://stackoverflow.com/questions/14489013/simulate-python-keypresses-for-controlling-a-game
-# inspired from pyimagesearch ball tracking https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
 from imutils.video import VideoStream
 import numpy as np
 
@@ -24,7 +10,7 @@ from directkeys import  W, A, S, D
 from directkeys import PressKey, ReleaseKey 
 
 # define the lower and upper boundaries of the "blue" object in the HSV color space
-#https://stackoverflow.com/questions/10948589/choosing-the-correct-upper-and-lower-hsv-boundaries-for-color-detection-withcv
+
 blueLower = np.array([53, 187, 0])
 blueUpper = np.array([180,255,255])
 
@@ -158,36 +144,34 @@ while True:
                 current_key_pressed.add(S)
             
 
-    # show the frame to our screen
+
     frame_copy = frame.copy()
     
-    #draw box for left (A)
     frame_copy = cv2.rectangle(frame_copy,(0,0),(width//2- windowSize//2,height//2 ),(255,255,255),1)
     cv2.putText(frame_copy,'LEFT',(10,30),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255))
 
-    #draw box for left (D)
+   
     frame_copy = cv2.rectangle(frame_copy,(width//2 + windowSize//2,0),(width-2,height//2 ),(255,255,255),1)
     cv2.putText(frame_copy,'RIGHT',(438,30),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255))
 
-    #draw box for left (W)
+    
     frame_copy = cv2.rectangle(frame_copy,(width//4,(height//2)+5),(3*width//4,3*height//4),(255,255,255),1)
     cv2.putText(frame_copy,'UP',(width//4,(height//2)+33),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255))
 
-    #draw box for left (S)
+    
     frame_copy = cv2.rectangle(frame_copy,(width//4,((3*height)//4)+5),(3*width//4,height),(255,255,255),1)
     cv2.putText(frame_copy,'DOWN',((3*width//4)-100,(height//2)+108),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255))
 
-    #display final frame    
+        
     cv2.imshow("Frame", frame_copy)
 
-    #We need to release the pressed key if none of the key is pressed else the program will keep on sending
-    # the presskey command 
+  
     if not keyPressed and len(current_key_pressed) != 0:
         for key in current_key_pressed:
             ReleaseKey(key)
         current_key_pressed = set()
 
-    #to release keys for left/right with keys of up/down remain pressed   
+     
     if not keyPressed_lr and ((A in current_key_pressed) or (D in current_key_pressed)):
         if A in current_key_pressed:
             ReleaseKey(A)
@@ -197,12 +181,10 @@ while True:
             current_key_pressed.remove(D)
 
     key = cv2.waitKey(1) & 0xFF
- 
-    # if the 'q' key is pressed, stop the loop
+
     if key == ord("q"):
         break
  
 
 video.stop()
-# close all windows
 cv2.destroyAllWindows()
